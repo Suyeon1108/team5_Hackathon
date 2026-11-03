@@ -53,11 +53,17 @@ variable "app_subnets" {
 variable "onprem_public_cidr" {
   description = "온프렘 공인 IP (/32). wg-sg의 UDP 51820 소스"
   type        = string
-  default     = "0.0.0.0/0"
+  # 기본값 없음: terraform.tfvars에 반드시 넣어야 plan이 돈다
 
   validation {
     condition     = can(cidrhost(var.onprem_public_cidr, 0))
     error_message = "CIDR 형식이어야 합니다. 예: 203.0.113.10/32"
+  }
+
+  # WireGuard UDP 51820을 인터넷 전체에 여는 것 방지
+  validation {
+    condition     = endswith(var.onprem_public_cidr, "/32")
+    error_message = "온프렘 공인 IP 1개(/32)만 허용합니다. 0.0.0.0/0 같은 대역은 쓸 수 없습니다."
   }
 }
 
