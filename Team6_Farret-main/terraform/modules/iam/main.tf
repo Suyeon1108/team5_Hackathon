@@ -25,10 +25,10 @@ resource "aws_iam_role" "app" {
   assume_role_policy = local.ec2_trust
 }
 
-# SSMFullAccess는 콘솔에서 붙여 둔 그대로. Session Manager 접속만 쓰면 ManagedInstanceCore로 충분해서 정리 대상
+# Session Manager 접속(ManagedInstanceCore)과 ECR pull만 필요
+# SSMFullAccess는 앱 서버가 쓰지 않는 ssm:* 전체 권한이라 제거
 resource "aws_iam_role_policy_attachment" "app" {
   for_each = toset([
-    "arn:aws:iam::aws:policy/AmazonSSMFullAccess",
     "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
     "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
   ])
