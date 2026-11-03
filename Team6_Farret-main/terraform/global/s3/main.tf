@@ -12,16 +12,16 @@ terraform {
   }
 
   backend "s3" {
-    bucket       = "pretix-demo-tfstate-994114886472"
+    bucket       = "pretix-demo-tfstate-095083225292"
     key          = "global/s3/terraform.tfstate"
-    region       = "ap-northeast-2"
+    region       = "ap-southeast-2"
     use_lockfile = true
     encrypt      = true
   }
 }
 
 provider "aws" {
-  region = "ap-northeast-2"
+  region = "ap-southeast-2"
 
   default_tags {
     tags = {

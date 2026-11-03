@@ -15,9 +15,9 @@ terraform {
 
   # state 파일을 팀 공용 S3 버킷에 둠
   backend "s3" {
-    bucket       = "pretix-demo-tfstate-994114886472"
+    bucket       = "pretix-demo-tfstate-095083225292"
     key          = "pretix-demo/terraform.tfstate"
-    region       = "ap-northeast-2"
+    region       = "ap-southeast-2"
     use_lockfile = true # S3 자체 락. 두 사람이 동시에 apply하는 것을 막는다
     encrypt      = true
   }

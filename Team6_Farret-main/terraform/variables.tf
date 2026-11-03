@@ -1,7 +1,7 @@
 variable "region" {
   description = "AWS 리전"
   type        = string
-  default     = "ap-northeast-2"
+  default     = "ap-southeast-2"
 }
 
 variable "project" {
@@ -32,8 +32,8 @@ variable "public_subnets" {
     cidr = string
   }))
   default = {
-    a = { az = "ap-northeast-2a", cidr = "10.0.1.0/24" }
-    c = { az = "ap-northeast-2c", cidr = "10.0.2.0/24" }
+    a = { az = "ap-southeast-2a", cidr = "10.0.1.0/24" }
+    c = { az = "ap-southeast-2c", cidr = "10.0.2.0/24" }
   }
 }
 
@@ -44,8 +44,8 @@ variable "app_subnets" {
     cidr = string
   }))
   default = {
-    a = { az = "ap-northeast-2a", cidr = "10.0.11.0/24" }
-    c = { az = "ap-northeast-2c", cidr = "10.0.12.0/24" }
+    a = { az = "ap-southeast-2a", cidr = "10.0.11.0/24" }
+    c = { az = "ap-southeast-2c", cidr = "10.0.12.0/24" }
   }
 }
 
@@ -66,13 +66,13 @@ variable "onprem_public_cidr" {
 variable "app_ami_id" {
   description = "앱 EC2 AMI (Ubuntu 24.04)"
   type        = string
-  default     = "ami-0e4ab31f1847c850c"
+  default     = "ami-01e91e94accc42eec"
 }
 
 variable "app_ami_snapshot_id" {
   description = "app_ami_id의 루트 볼륨 스냅샷"
   type        = string
-  default     = "snap-02f31e91c80bcad76"
+  default     = "snap-0456c4a2c7d73e41a"
 }
 
 # 온프렘 공인 IP가 들어가서 terraform.tfvars에 뒀음
