@@ -7,6 +7,9 @@ resource "aws_launch_template" "app" {
   image_id      = var.ami_id
   instance_type = "t3.medium"
 
+  # 새 버전을 기본 버전으로. ASG가 "$Default"를 쓰므로 이게 없으면 수정이 반영되지 않음
+  update_default_version = true
+
   iam_instance_profile {
     arn = var.instance_profile_arn
   }
@@ -19,7 +22,7 @@ resource "aws_launch_template" "app" {
       volume_size           = 20
       volume_type           = "gp3"
       delete_on_termination = true
-      encrypted             = "false"
+      encrypted             = "true" #기존 "false": 루트 볼륨·스냅샷 평문 저장
       snapshot_id           = var.ami_snapshot_id
     }
   }
